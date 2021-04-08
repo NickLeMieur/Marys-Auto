@@ -41,6 +41,10 @@ app.get('/about', (req, res) =>{
   res.render('about')
 })
 
+app.get('/order', (req, res) =>{
+  res.render('order')
+})
+
 
 
 
