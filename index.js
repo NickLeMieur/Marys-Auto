@@ -8,9 +8,12 @@ const { removeAllListeners } = require('nodemon');
 //port declaration
 const PORT = process.env.PORT || 1650;
 
+const orders = require('./routes/order');
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+
+
 
 const dbUrl = "mongodb://127.0.0.1:27017";
 
@@ -41,9 +44,7 @@ app.get('/about', (req, res) =>{
   res.render('about')
 })
 
-app.get('/order', (req, res) =>{
-  res.render('order')
-})
+app.use('/order', orders);
 
 
 
