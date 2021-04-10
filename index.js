@@ -18,6 +18,9 @@ app.set('view engine', 'handlebars');
 const dbUrl = "mongodb://127.0.0.1:27017";
 
 const db = mongoose.connection;
+require('./models/WorkOrder');
+const WorkOrder = mongoose.model('WorkOrder');
+
 
 mongoose.connect(dbUrl,
   {
@@ -40,7 +43,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/about', (req, res) =>{
+app.get('/about', (req, res) => {
   res.render('about')
 })
 
