@@ -11,4 +11,9 @@ const router = express.Router();
     
   });
 
+  router.get('/submitWorkOrder', (req, res) => {
+    res.render('order/submitWorkOrder');
+    
+  });
+
   module.exports = router;
