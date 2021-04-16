@@ -96,6 +96,22 @@ app.get('/order/viewWorkOrders', async (req, res) => {
 
 });
 
+app.post('/order/deleteWorkOrder', async (req, res) => {
+
+  console.log(req.body.id);
+  await WorkOrder.deleteOne({ _id: req.body.id }).then(del => {
+    res.status(204);  //setting status to 204 (no content)
+  });
+});
+
+app.post('/order/doWorkOrder', async (req, res) => {
+  console.log(req.body);
+  res.render('./order/doWorkOrder', {
+    id: req.body.id
+  });
+  return res.status(200);
+});
+
 app.use('/order', orders);
 
 

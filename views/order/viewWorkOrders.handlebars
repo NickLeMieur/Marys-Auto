@@ -2,7 +2,7 @@
   <h3>View Work Orders</h3>
 </div>
 <div>
-  <form class="form-inline" method="post" action="viewTransact">
+  <form class="form-inline" method="post" action="searchWorkOrder">
     <input type="text" id="searchbar" placeholder="Search by First Name" class="form-control" name="fname">
     <input type='submit' id="btn" name="btn" value="Search" class='btn btn-secondary' />
   </form>
@@ -21,35 +21,34 @@
   {{#each orders}}
   <tbody>
     <tr>
-      <form action="" method="post">
-        <td label="Date"><input type="text" value="{{dateEntered}}" class="form-control" name="transactDate"
-            readonly="true">
-        </td>
-        <td label="Name"><input type="text" value="{{fname}} {{lname}}" class="form-control" name="fname"
-            readonly="true">
-        </td>
-        <td label="Make"><input type="text" value="{{vehMake}}" class="form-control" name="lname" readonly="true">
-        </td>
-        <td label="Model"><input type="text" value="{{vehModel}}" class="form-control" name="lname" readonly="true">
-        </td>
-        <td label="Year"><input type="text" value="{{vehYear}}" class="form-control" name="lname" readonly="true">
-        </td>
-        <td>
-          <nav>
-            <button class="navbar-toggler btn-dark" type="button" data-toggle="collapse"
-              data-target="#transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}"
-              aria-controls="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
-              Details</button>
-          </nav>
-        </td>
-        <thead id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
-          <tr>
-            <th scope="col">Estimate</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Problems</th>
 
-          </tr>
-        </thead>
+      <td label="Date"><input type="text" value="{{dateEntered}}" class="form-control" name="transactDate"
+          readonly="true">
+      </td>
+      <td label="Name"><input type="text" value="{{fname}} {{lname}}" class="form-control" name="fname" readonly="true">
+      </td>
+      <td label="Make"><input type="text" value="{{vehMake}}" class="form-control" name="lname" readonly="true">
+      </td>
+      <td label="Model"><input type="text" value="{{vehModel}}" class="form-control" name="lname" readonly="true">
+      </td>
+      <td label="Year"><input type="text" value="{{vehYear}}" class="form-control" name="lname" readonly="true">
+      </td>
+      <td>
+        <nav>
+          <button class="navbar-toggler btn-dark" type="button" data-toggle="collapse"
+            data-target="#transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}"
+            aria-controls="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
+            Details</button>
+        </nav>
+      </td>
+      <thead id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+        <tr>
+          <th scope="col">Estimate</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Problems</th>
+
+        </tr>
+      </thead>
     </tr>
     <tr id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
       <td label="Estimate"><input type="text" value="{{vehEstimate}}" class="form-control" name="Time" readonly='true'>
@@ -58,21 +57,15 @@
           readonly="true">
       <td label="Problems"><input value="{{vehProblem}}" class="form-control input-large" name="description"
           readonly="true"></textarea></td>
-      <td class="disp" id="delete{{phoneNumber}}{{transactDate}}{{transactPrice}}">
-        <form method="deleteWorkOrder" method="post"><button class="btn btn-danger" name="id" type="submit"
-            value="{{_id}}">Delete</button></form>
+      <td>
+        <form method="post" action="deleteWorkOrder"><button class="btn btn-danger">Delete</button><input hidden=""
+            name="id" value="{{_id}}" /></form>
       </td>
       <td>
-        <form method="#" method="post"><button class="btn btn-success" name="id" type="submit" value="{{_id}}">Work On
-            Order</button></form>
+        <form method="post" action="doWorkOrder"><button class="btn btn-success">Work On Order</button><input hidden=""
+            name="id" value="{{_id}}" /></form>
       </td>
-      {{!--
-      </form>
-      </td>
-      <td class="hidden" id="enterEdit{{phoneNumber}}{{transactDate}}{{transactName}}">
-        <button type="submit" value="{{phoneNumber}}{{transactDate}}{{transactName}}">Submit</button>
-      </td>
-      </form> --}}
+
     </tr>
   </tbody>
   {{else}}
