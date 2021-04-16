@@ -25,6 +25,11 @@ const WorkOrder = new Schema(
       type: String,
       required: true
     },
+    vehVin:
+    {
+      type: String,
+      required: true
+    },
     phoneNumber:
     {
       type: String,
@@ -35,8 +40,13 @@ const WorkOrder = new Schema(
       type: String,
       required: true
     },
-    //estimated price
-    vehEstimate:
+    //service details
+    laborHours:
+    {
+      type: String,
+      required: true
+    },
+    servicePrice:
     {
       type: Number,
       required: true

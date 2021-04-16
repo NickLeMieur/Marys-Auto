@@ -9,21 +9,21 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label for="form_name">First Name</label>
-              <input id="lname" type="text" name="fname" class="form-control" placeholder="Tony">
+              <input id="lname" required="" type="text" name="fname" class="form-control" placeholder="Tony">
               <div class="help-block with-errors"></div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
               <label for="form_name">Last Name</label>
-              <input id="lname" type="text" name="lname" class="form-control" placeholder="Fierro">
+              <input id="lname" type="text" required="" name="lname" class="form-control" placeholder="Fierro">
               <div class="help-block with-errors"></div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
               <label for="form_phone">Phone</label>
-              <input id="form_phone" type="tel" name="phoneNumber" class="form-control">
+              <input placeholder="1234567890" required="" id="form_phone" type="tel" name="phoneNumber" class="form-control">
               <div class="help-block with-errors"></div>
             </div>
           </div>
@@ -32,17 +32,23 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <label for="form_phone">Service Name</label>
-            <input id="form_phone" type="text" name="transactName" required="required" class="form-control"
-              data-error="Enter service name" placeholder="Translate">
+            <label for="form_name">Vehicle Make</label>
+            <input id="lname" type="text" required="" name="make" class="form-control" placeholder="Tony">
             <div class="help-block with-errors"></div>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group">
-            <label for="form_control">Service Date</label>
-            <input id="form_control" type="date" name="transactDate" required="required" class="form-control"
-              data-error="Enter service date" placeholder="mm-DD-yyyy">
+            <label for="form_name">Vehicle Model</label>
+            <input id="lname" required="" type="text" name="model" class="form-control" placeholder="Fierro">
+            <div class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="form_name">Vehicle Year</label>
+            <input id="cost" type="number" name="year" class="form-control" required="required" data-error="Enter Year"
+               placeholder="2006">
             <div class="help-block with-errors"></div>
           </div>
         </div>
@@ -51,16 +57,8 @@
         <div class="col-sm-4">
           <div class="form-group">
             <label for="form_name">Cost Estimate</label>
-            <input id="cost" type="text" name="cost" class="form-control" required="required" data-error="Enter Cost"
-              onkeypress='validate(event)' placeholder="200">
-            <div class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="form_name">Labor Estimate</label>
-            <input id="form_phone" type="text" name="time" required="required" class="form-control"
-              data-error="Enter time in hours" placeholder="3 hrs">
+            <input id="cost" type="number" name="cost" class="form-control" required="required" data-error="Enter Cost"
+               placeholder="200">
             <div class="help-block with-errors"></div>
           </div>
         </div>
@@ -68,9 +66,9 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="form_message">Description</label>
-            <textarea id="form_message" name="message" class="form-control" placeholder="Service Details" rows="4"
-              required="required" data-error="send a message."></textarea>
+            <label for="form_message">Problem Description</label>
+            <textarea id="form_message" name="problems" class="form-control" placeholder="Detailed list of problems"
+              rows="4" required="required" data-error="Enter Description."></textarea>
             <div class="help-block with-errors"></div>
           </div>
         </div>
@@ -85,5 +83,5 @@
   </div>
 </body>
 <footer>
-  <p>First Version (V 1.00)</p>
+  <p>Version 1.09</p>
 </footer>

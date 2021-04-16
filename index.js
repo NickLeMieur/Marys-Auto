@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { removeAllListeners } = require('nodemon');
 //port declaration
@@ -14,13 +14,20 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 
+//THIS IS REQUIRED FOR RES.BODY OPERATIONS
+//it converts the req.body to a desrialized 
+//json object for app use
+app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
+app.use(express.json()); //Used to parse JSON bodies
 
-const dbUrl = "mongodb://127.0.0.1:27017";
+
+//database operations
+
+const dbUrl = "mongodb+srv://admin:Password1@cluster.qtabs.mongodb.net/MarysAuto?retryWrites=true&w=majority";
 
 const db = mongoose.connection;
 require('./models/WorkOrder');
 const WorkOrder = mongoose.model('WorkOrder');
-
 
 mongoose.connect(dbUrl,
   {
@@ -45,7 +52,32 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about')
-})
+});
+
+app.post('/order/submitWorkOrder', async (req,res) =>{
+  //res.render('/submitWorkOrder');
+  console.log(req.body);
+  var error = false;
+    
+  const order = {
+    fname: req.body.fname,
+    lname: req.body.lname,
+    vehModel: req.body.model,
+    vehMake: req.body.make,
+    vehYear: req.body.year,
+    phoneNumber: req.body.phoneNumber,
+    vehProblem: req.body.problems,
+    vehEstimate: req.body.cost
+  }
+  await WorkOrder(order).save().then(cOrder =>{
+    console.log(cOrder);
+    res.status(201);
+  });
+
+  res.render('./order/submitWorkOrder');
+  return res.status(200);
+
+});
 
 app.use('/order', orders);
 
