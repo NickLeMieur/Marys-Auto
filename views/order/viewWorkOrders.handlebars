@@ -1,0 +1,188 @@
+<div>
+  <h3>View Work Orders</h3>
+</div>
+<div>
+  <form class="form-inline" method="post" action="viewTransact">
+    <input type="text" id="searchbar" placeholder="Search by First Name" class="form-control" name="fname">
+    <input type='submit' id="btn" name="btn" value="Search" class='btn btn-secondary' />
+  </form>
+  <br />
+</div>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Name</th>
+      <th scope="col">Make</th>
+      <th scope="col">Model</th>
+      <th scope="col">Year</th>
+    </tr>
+  </thead>
+  {{#each orders}}
+  <tbody>
+    <tr>
+      <form action="" method="post">
+        <td label="Date"><input type="text" value="{{dateEntered}}" class="form-control" name="transactDate"
+            readonly="true">
+        </td>
+        <td label="Name"><input type="text" value="{{fname}} {{lname}}" class="form-control" name="fname"
+            readonly="true">
+        </td>
+        <td label="Make"><input type="text" value="{{vehMake}}" class="form-control" name="lname" readonly="true">
+        </td>
+        <td label="Model"><input type="text" value="{{vehModel}}" class="form-control" name="lname" readonly="true">
+        </td>
+        <td label="Year"><input type="text" value="{{vehYear}}" class="form-control" name="lname" readonly="true">
+        </td>
+        <td>
+          <nav>
+            <button class="navbar-toggler btn-dark" type="button" data-toggle="collapse"
+              data-target="#transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}"
+              aria-controls="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
+              Details</button>
+          </nav>
+        </td>
+        <thead id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+          <tr>
+            <th scope="col">Estimate</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Problems</th>
+
+          </tr>
+        </thead>
+    </tr>
+    <tr id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+      <td label="Estimate"><input type="text" value="{{vehEstimate}}" class="form-control" name="Time" readonly='true'>
+      </td>
+      <td label="Phone Number"><input type="text" value="{{phoneNumber}}" class="form-control" name="phone"
+          readonly="true">
+      <td label="Problems"><input value="{{vehProblem}}" class="form-control input-large" name="description"
+          readonly="true"></textarea></td>
+      <td class="disp" id="delete{{phoneNumber}}{{transactDate}}{{transactPrice}}">
+        <form method="deleteWorkOrder" method="post"><button class="btn btn-danger" name="id" type="submit"
+            value="{{_id}}">Delete</button></form>
+      </td>
+      <td>
+        <form method="#" method="post"><button class="btn btn-success" name="id" type="submit" value="{{_id}}">Work On
+            Order</button></form>
+      </td>
+      {{!--
+      </form>
+      </td>
+      <td class="hidden" id="enterEdit{{phoneNumber}}{{transactDate}}{{transactName}}">
+        <button type="submit" value="{{phoneNumber}}{{transactDate}}{{transactName}}">Submit</button>
+      </td>
+      </form> --}}
+    </tr>
+  </tbody>
+  {{else}}
+  <h1>No Work Orders in Database</h1>
+  <h3><a href='/'>Return to all transacts</a></h3>
+  {{/each}}
+</table>
+<style>
+  .disp {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /*Mobile View*/
+  @media only screen and (max-width: 760px) {
+
+    td,
+    tr :not(form) {
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      border: 1px solid rgb(119, 118, 175);
+    }
+
+    tr+tr {
+      margin-top: 1.5em;
+    }
+
+    td {
+      /* make like a "row" */
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+      text-align: left;
+    }
+
+    td:before {
+      content: attr(label);
+      display: inline-block;
+      line-height: 1.5;
+      width: 100%;
+      white-space: nowrap;
+
+      /*Mobile View*/
+      @media only screen and (max-width: 760px) {
+
+        td,
+        tr :not(form) {
+          display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+
+        tr {
+          border: 1px solid rgb(119, 118, 175);
+        }
+
+        tr+tr {
+          margin-top: 1.5em;
+        }
+
+        td {
+          /* make like a "row" */
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+          text-align: left;
+        }
+
+        td:before {
+          content: attr(label);
+          display: inline-block;
+          line-height: 1.5;
+          width: 100%;
+          white-space: nowrap;
+        }
+
+        #sub {
+          display: block;
+          width: 100%;
+        }
+      }
+</style>
+<script>
+  function editFields(key) {
+    if (document.getElementById("delete" + key).style.display == "block") {
+      document.getElementById("delete" + key).style.display = "none";
+      document.getElementById("enterEdit" + key).style.display = "block";
+    }
+
+  }
+
+</script>

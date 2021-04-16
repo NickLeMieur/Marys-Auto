@@ -54,11 +54,11 @@ app.get('/about', (req, res) => {
   res.render('about')
 });
 
-app.post('/order/submitWorkOrder', async (req,res) =>{
+app.post('/order/submitWorkOrder', async (req, res) => {
   //res.render('/submitWorkOrder');
   console.log(req.body);
   var error = false;
-    
+
   const order = {
     fname: req.body.fname,
     lname: req.body.lname,
@@ -69,13 +69,30 @@ app.post('/order/submitWorkOrder', async (req,res) =>{
     vehProblem: req.body.problems,
     vehEstimate: req.body.cost
   }
-  await WorkOrder(order).save().then(cOrder =>{
+  await WorkOrder(order).save().then(cOrder => {
+    res.render('./order/submitWorkOrder', {
+      fname: cOrder.fname,
+      lname: cOrder.lname,
+      vehModel: cOrder.vehModel,
+      vehMake: cOrder.vehMake,
+      vehYear: cOrder.vehYear,
+      phoneNumber: cOrder.phoneNumber,
+      vehProblem: cOrder.vehProblem,
+      vehEstimate: cOrder.vehEstimate
+    });
     console.log(cOrder);
     res.status(201);
   });
 
-  res.render('./order/submitWorkOrder');
   return res.status(200);
+
+});
+app.get('/order/viewWorkOrders', async (req, res) => {
+  await WorkOrder.find({}).lean().then(orders => {
+    res.render('./order/viewWorkOrders', {
+      orders: orders
+    });
+  });
 
 });
 

@@ -25,6 +25,11 @@ const WorkOrder = new Schema(
       type: String,
       required: true
     },
+    vehYear:
+    {
+      type: String,
+      required: true
+    },
     phoneNumber:
     {
       type: String,
