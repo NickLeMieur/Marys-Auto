@@ -88,7 +88,8 @@ app.post('/order/submitWorkOrder', async (req, res) => {
 
 });
 app.get('/order/viewWorkOrders', async (req, res) => {
-  await WorkOrder.find({}).lean().then(orders => {
+  //sorting newest to oldest
+  await WorkOrder.find({}).sort({"dateEntered":-1}).lean().then(orders => {
     res.render('./order/viewWorkOrders', {
       orders: orders
     });
