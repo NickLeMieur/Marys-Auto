@@ -22,8 +22,8 @@
   <tbody>
     <tr>
 
-      <td label="Date"><input type="text" value="{{dateEntered}}" class="form-control" name="transactDate"
-          readonly="true">
+      <td label="Date"><input id="dateInput" type="text" value="{{dateEntered}}" class="form-control"
+          name="transactDate" readonly="true">
       </td>
       <td label="Name"><input type="text" value="{{fname}} {{lname}}" class="form-control" name="fname" readonly="true">
       </td>
@@ -73,6 +73,20 @@
   <h3><a href='/'>Return to all transacts</a></h3>
   {{/each}}
 </table>
+<script>
+
+  function createDateObj(d) {
+    //console.log("here");
+    console.log(d);
+    const date = new Date(d);
+    console.log(date.toLocaleDateString());
+    var td = document.getElementById("dateInput");
+
+    td.appendChild(document.createTextNode(date.toLocaleDateString()));
+    //return date.toLocaleDateString();
+  }
+
+</script>
 <style>
   .disp {
     display: block;

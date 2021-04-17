@@ -89,7 +89,7 @@ app.post('/order/submitWorkOrder', async (req, res) => {
 });
 app.get('/order/viewWorkOrders', async (req, res) => {
   //sorting newest to oldest
-  await WorkOrder.find({}).sort({"dateEntered":-1}).lean().then(orders => {
+  await WorkOrder.find({}).sort({ "dateEntered": -1 }).lean().then(orders => {
     res.render('./order/viewWorkOrders', {
       orders: orders
     });
@@ -106,10 +106,26 @@ app.post('/order/deleteWorkOrder', async (req, res) => {
 });
 
 app.post('/order/doWorkOrder', async (req, res) => {
+
   console.log(req.body);
+  var ord = await WorkOrder.findOne({ _id: req.body.id }).lean();
+  //console.log(ord);
+  //console.log(ord);
+  const date = new Date(ord.dateEntered);
+  console.log(date.toLocaleDateString());
+
+  //console.log(date.toString());
   res.render('./order/doWorkOrder', {
-    id: req.body.id
+    id: req.body.id,
+    fname: ord.fname,
+    lname: ord.lname,
+    make: ord.vehMake,
+    model: ord.vehModel,
+    year: ord.vehYear,
+    problem: ord.vehProblem,
+    date: date
   });
+  //console.log(ord);
   return res.status(200);
 });
 
