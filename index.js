@@ -104,6 +104,9 @@ app.post('/order/deleteWorkOrder', async (req, res) => {
     res.status(204);  //setting status to 204 (no content)
   });
 });
+app.get('/order/dailyProgress', async (req, res) => {
+  res.render('./order/dailyProgress');
+});
 
 app.post('/order/doWorkOrder', async (req, res) => {
 
