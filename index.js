@@ -1,4 +1,5 @@
 //package declarations
+const handlebars = require('handlebars');
 const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
@@ -8,6 +9,7 @@ const { removeAllListeners } = require('nodemon');
 //port declaration
 const PORT = process.env.PORT || 1650;
 
+handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 const orders = require('./routes/order');
 
 app.engine('handlebars', exphbs());
