@@ -1,3 +1,17 @@
-<h3 style="text-align:center;">Work On Order</h3>
+<h3 style="text-align:center;">Complete Work Order</h3>
 
-<p>Sent object id: {{id}}</p>
+<form method="post" action="./completeReciept">
+  <input hidden="" name="id" value="{{id}}" />
+  <label for="n">Name</label><input class="form-control" readonly="" name="fname" value="{{fname}} {{lname}}" />
+  <label for="c">Make</label><input name="make" readonly="" class="form-control" value="{{make}}" />
+  <label for="q">Model</label><input name="model" readonly="" class="form-control" value="{{model}}" />
+  <label for="r">Year</label><input name="year" readonly="" class="form-control" value="{{year}}" />
+  <label for="q">Labor Hours</label><input type="number" name="hours" class="form-control" />
+  <label for="s">Total Price</label><input name="cost" class="form-control" />
+  <label for="parts">Parts Used</label><textarea class="form-control" rows="2"></textarea>
+  <label for="e">Technician Details</label><textarea rows="3" name="problems" class="form-control"></textarea>
+  <button type="submit" class="btn btn-primary">
+    <p>Submit Work Order</p>
+  </button>
+</form>
+<br />

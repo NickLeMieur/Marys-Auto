@@ -128,11 +128,14 @@ app.post('/order/doWorkOrder', async (req, res) => {
   const date = new Date(ord.dateEntered);
   console.log(date.toLocaleDateString());
 
+  console.log(ord);
   //console.log(date.toString());
   res.render('./order/doWorkOrder', {
     id: req.body.id,
     fname: ord.fname,
     lname: ord.lname,
+    phoneNumber: ord.phoneNumber,
+    cost: ord.vehEstimate,
     make: ord.vehMake,
     model: ord.vehModel,
     year: ord.vehYear,
