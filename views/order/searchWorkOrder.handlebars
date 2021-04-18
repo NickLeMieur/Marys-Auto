@@ -1,13 +1,5 @@
-<div>
-  <h3>View Work Orders</h3>
-</div>
-<div>
-  <form class="form-inline" method="post" action="searchWorkOrder">
-    <input type="text" id="fname" placeholder="Search by First Name" class="form-control" name="fname">
-    <input type='submit' id="btn" name="btn" value="Search" class='btn btn-secondary' />
-  </form>
-  <br />
-</div>
+<h3>Search Results</h3>
+
 <table class="table table-dark">
   <thead>
     <tr>
@@ -18,7 +10,7 @@
       <th scope="col">Year</th>
     </tr>
   </thead>
-  {{#each orders}}
+  {{#each ord}}
   <tbody>
     <tr>
       <td label="Date"><input id="dateInput" type="text" value="{{dateFormat dateEntered " MM/DD/YYYY"}}"
@@ -69,112 +61,12 @@
   </tbody>
   {{else}}
   <h1>No Work Orders in Database</h1>
-  <h3><a href='/'>Return to all transacts</a></h3>
+  <h3><a href='/order/viewWorkOrders'>Return to all transacts</a></h3>
   {{/each}}
 </table>
-<style>
-  .disp {
-    display: block;
-  }
 
-  .hidden {
-    display: none;
-  }
-
-  /*Mobile View*/
-  @media only screen and (max-width: 760px) {
-
-    td,
-    tr :not(form) {
-      display: block;
-    }
-
-    /* Hide table headers (but not display: none;, for accessibility) */
-
-    thead tr {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    tr {
-      border: 1px solid rgb(119, 118, 175);
-    }
-
-    tr+tr {
-      margin-top: 1.5em;
-    }
-
-    td {
-      /* make like a "row" */
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
-      text-align: left;
-    }
-
-    td:before {
-      content: attr(label);
-      display: inline-block;
-      line-height: 1.5;
-      width: 100%;
-      white-space: nowrap;
-
-      /*Mobile View*/
-      @media only screen and (max-width: 760px) {
-
-        td,
-        tr :not(form) {
-          display: block;
-        }
-
-        /* Hide table headers (but not display: none;, for accessibility) */
-
-        thead tr {
-          position: absolute;
-          top: -9999px;
-          left: -9999px;
-        }
-
-        tr {
-          border: 1px solid rgb(119, 118, 175);
-        }
-
-        tr+tr {
-          margin-top: 1.5em;
-        }
-
-        td {
-          /* make like a "row" */
-          border: none;
-          border-bottom: 1px solid #eee;
-          position: relative;
-          padding-left: 50%;
-          text-align: left;
-        }
-
-        td:before {
-          content: attr(label);
-          display: inline-block;
-          line-height: 1.5;
-          width: 100%;
-          white-space: nowrap;
-        }
-
-        #sub {
-          display: block;
-          width: 100%;
-        }
-      }
-</style>
-<script>
-  function editFields(key) {
-    if (document.getElementById("delete" + key).style.display == "block") {
-      document.getElementById("delete" + key).style.display = "none";
-      document.getElementById("enterEdit" + key).style.display = "block";
-    }
-
-  }
-
-</script>
+<a href='/order/viewWorkOrders'>
+  <button class="btn btn-secondary">
+    <p>Return to Work Orders</p>
+  </button>
+</a>

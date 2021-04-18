@@ -1,19 +1,17 @@
-<h3>Work Order Was Submitted</h3>
-<p>The following data was posted</p>
+<h3>Confirm Work Order Data</h3>
+<p>The following data will be posted:</p>
 
-
-<div>
-  <label for="fname">First Name</label><input class="form-control" id="fname" readonly="" value="{{fname}}" />
-  <label for="lname">Last Name</label><input class="form-control" id="lname" readonly="" value="{{lname}}" />
-  <label for="pn">Phone Number</label><input id="pn" class="form-control" readonly="" value="{{phoneNumber}}" />
-  <label for="ma">Make</label><input id="ma" class="form-control" readonly="" value="{{vehMake}}" />
-  <label for="md">Model</label><input id="md" class="form-control" readonly="" value="{{vehModel}}" />
-  <label for="yr">Year</label><input id="yr" class="form-control" readonly="" value="{{vehYear}}" />
-  <label for="ds">Problems</label><input id="ds" class="form-control" readonly="" value="{{vehProblem}}" />
-</div>
-<br />
-<a href="/">
+<form method="post" action="./completeWorkOrder">
+  <label for="n">First Name</label><input class="form-control" name="fname" value="{{fname}}" />
+  <label for="a">Last Name</label><input class="form-control" name="lname" value="{{lname}}" />
+  <label for="d">Phone Number</label><input name="phoneNumber" class="form-control" value="{{phoneNumber}}" />
+  <label for="c">Make</label><input name="make" class="form-control" value="{{vehMake}}" />
+  <label for="q">Model</label><input name="model" class="form-control" value="{{vehModel}}" />
+  <label for="r">Year</label><input name="year" class="form-control" value="{{vehYear}}" />
+  <label for="s">Estimate</label><input name="cost" class="form-control" value="{{cost}}" />
+  <label for="e">Problems</label><input name="problems" class="form-control" value="{{vehProblem}}" />
   <button type="submit" class="btn btn-primary">
-    <p>Return to main</p>
+    <p>Submit Work Order</p>
   </button>
-</a>
+</form>
+<br />

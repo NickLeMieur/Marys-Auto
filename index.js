@@ -58,10 +58,9 @@ app.get('/about', (req, res) => {
 
 app.post('/order/submitWorkOrder', async (req, res) => {
   //res.render('/submitWorkOrder');
-  console.log(req.body);
+  console.log("rec" + req.body.fname);
   var error = false;
-
-  const order = {
+  res.render('./order/submitWorkOrder', {
     fname: req.body.fname,
     lname: req.body.lname,
     vehModel: req.body.model,
@@ -69,23 +68,8 @@ app.post('/order/submitWorkOrder', async (req, res) => {
     vehYear: req.body.year,
     phoneNumber: req.body.phoneNumber,
     vehProblem: req.body.problems,
-    vehEstimate: req.body.cost
-  }
-  await WorkOrder(order).save().then(cOrder => {
-    res.render('./order/submitWorkOrder', {
-      fname: cOrder.fname,
-      lname: cOrder.lname,
-      vehModel: cOrder.vehModel,
-      vehMake: cOrder.vehMake,
-      vehYear: cOrder.vehYear,
-      phoneNumber: cOrder.phoneNumber,
-      vehProblem: cOrder.vehProblem,
-      vehEstimate: cOrder.vehEstimate
-    });
-    console.log(cOrder);
-    res.status(201);
+    cost: req.body.cost
   });
-
   return res.status(200);
 
 });
@@ -99,15 +83,40 @@ app.get('/order/viewWorkOrders', async (req, res) => {
 
 });
 
+app.post('/order/completeWorkOrder', async (req, res) => {
+  //console.log(req.body);
+
+  const order = {
+    fname: req.body.fname,
+    lname: req.body.lname,
+    vehModel: req.body.model,
+    vehMake: req.body.make,
+    vehYear: req.body.year,
+    phoneNumber: req.body.phoneNumber,
+    vehProblem: req.body.problems,
+    vehEstimate: req.body.cost
+  }
+  var ord = await WorkOrder(order).save().then(cOrder => {
+
+    console.log(cOrder);
+    //res.render('../order/viewWorkOrders');
+    res.redirect('../order/viewWorkOrders');
+    return res.status(201);
+  });
+
+
+});
 app.post('/order/deleteWorkOrder', async (req, res) => {
 
   console.log(req.body.id);
   await WorkOrder.deleteOne({ _id: req.body.id }).then(del => {
-    res.status(204);  //setting status to 204 (no content)
+    res.status(204).redirect('../order/viewWorkOrders');  //setting status to 204 (no content)
   });
 });
 app.get('/order/dailyProgress', async (req, res) => {
   res.render('./order/dailyProgress');
+
+  return res.status(200);
 });
 
 app.post('/order/doWorkOrder', async (req, res) => {
@@ -133,6 +142,24 @@ app.post('/order/doWorkOrder', async (req, res) => {
   //console.log(ord);
   return res.status(200);
 });
+
+app.post('/order/searchWorkOrder', async (req, res) => {
+
+  var orders = await WorkOrder.find({ fname: req.body.fname })
+    .lean().catch((err) => { console.log(err) });
+
+  res.render('./order/searchWorkOrder', {
+    ord: orders
+  });
+
+  return res.status(200);
+});
+
+
+
+
+
+
 
 app.use('/order', orders);
 
