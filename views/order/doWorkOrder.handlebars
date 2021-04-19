@@ -1,15 +1,18 @@
-<h3 style="text-align:center;">Complete Work Order</h3>
+<h3 style="text-align:center;">Create Reciept</h3>
 
 <form method="post" action="./completeReciept">
   <input hidden="" name="id" value="{{id}}" />
-  <label for="n">Name</label><input class="form-control" readonly="" name="fname" value="{{fname}} {{lname}}" />
+  <label for="n">Customer Name</label><input class="form-control" readonly="" name="name" value="{{fname}} {{lname}}" />
+  <label for="pn">Phone Number</label><input class="form-control" readonly="" name="phoneNumber"
+    value="{{phoneNumber}}" />
   <label for="c">Make</label><input name="make" readonly="" class="form-control" value="{{make}}" />
   <label for="q">Model</label><input name="model" readonly="" class="form-control" value="{{model}}" />
   <label for="r">Year</label><input name="year" readonly="" class="form-control" value="{{year}}" />
-  <label for="q">Labor Hours</label><input type="number" name="hours" class="form-control" />
-  <label for="s">Total Price</label><input name="cost" class="form-control" />
-  <label for="parts">Parts Used</label><textarea class="form-control" rows="2"></textarea>
-  <label for="e">Technician Details</label><textarea rows="3" name="problems" class="form-control"></textarea>
+  <label for="q">Labor Hours</label><input required="" type="number" name="hours" class="form-control" />
+  <label for="s">Total Price</label><input required="" name="cost" class="form-control" />
+  <label for="parts">Parts Used</label><textarea name="parts" required="" class="form-control" rows="2"></textarea>
+  <label for="e">Technician Details</label><textarea required="" rows="3" name="problems"
+    class="form-control"></textarea>
   <button type="submit" class="btn btn-primary">
     <p>Submit Work Order</p>
   </button>

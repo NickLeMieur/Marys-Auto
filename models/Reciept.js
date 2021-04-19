@@ -1,31 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //creating schema for clients
-const WorkOrder = new Schema(
+const Reciept = new Schema(
   {
     //cust information
-    fname:
-    {
-      type: String,
-      required: true
-    },
-    lname:
+    name:
     {
       type: String,
       required: true
     },
     //vehicle information
-    vehModel:
+    model:
     {
       type: String,
       required: true
     },
-    vehMake:
-    {
-      type: String,
-      required: true
-    },
-    vehVin:
+    make:
     {
       type: String,
       required: true
@@ -35,18 +25,23 @@ const WorkOrder = new Schema(
       type: String,
       required: true
     },
-    vehProblem:
+    problems:
+    {
+      type: String,
+      required: true
+    },
+    parts: 
     {
       type: String,
       required: true
     },
     //service details
-    laborHours:
+    hours:
     {
       type: String,
       required: true
     },
-    servicePrice:
+    cost:
     {
       type: Number,
       required: true
@@ -58,5 +53,5 @@ const WorkOrder = new Schema(
       default: Date.now
     }
   });
-  //setting model
-  mongoose.model('WorkOrder', WorkOrder)
+//setting model
+mongoose.model('Reciept', Reciept)

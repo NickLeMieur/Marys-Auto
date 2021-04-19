@@ -30,6 +30,8 @@ const dbUrl = "mongodb+srv://admin:Password1@cluster.qtabs.mongodb.net/MarysAuto
 const db = mongoose.connection;
 require('./models/WorkOrder');
 const WorkOrder = mongoose.model('WorkOrder');
+require('./models/Reciept');
+const Reciept = mongoose.model('Reciept');
 
 mongoose.connect(dbUrl,
   {
@@ -158,7 +160,45 @@ app.post('/order/searchWorkOrder', async (req, res) => {
   return res.status(200);
 });
 
+app.post('/order/completeReciept', async (req, res) => {
 
+  
+  var reciept = {
+    name: req.body.name,
+    make: req.body.make,
+    model: req.body.model,
+    cost: req.body.cost,
+    year: req.body.year,
+    hours: req.body.hours,
+    parts: req.body.parts,
+    problems: req.body.problems,
+    phoneNumber: req.body.phoneNumber
+  };
+  console.log(reciept);
+
+  await Reciept(reciept).save().then(print => {
+    res.render('./order/completeReciept', {
+      make: print.make,
+      model: print.model,
+      name: print.name,
+      cost: print.cost,
+      year: print.year,
+      parts: print.parts,
+      problems: print.problems,
+      phoneNumber: print.phoneNumber,
+      hours: print.hours
+    });
+  }).catch(err => {
+    console.log(err);
+    return res.status(500).json("Failed to Create Reciept");
+  });
+
+
+  res.render('./order/completeReciept');
+  return res.status(200);
+
+
+});
 
 
 
