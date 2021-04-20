@@ -5,6 +5,8 @@ const app = express();
 const exphbs = require('express-handlebars');
 //const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const insecureHandlebars = allowInsecurePrototypeAccess(handlebars);
 const { removeAllListeners } = require('nodemon');
 //port declaration
 const PORT = process.env.PORT || 1650;
@@ -75,6 +77,7 @@ app.post('/order/submitWorkOrder', async (req, res) => {
   return res.status(200);
 
 });
+
 app.get('/order/viewWorkOrders', async (req, res) => {
   //sorting newest to oldest
   await WorkOrder.find({}).sort({ "dateEntered": -1 }).lean().then(orders => {
@@ -82,7 +85,20 @@ app.get('/order/viewWorkOrders', async (req, res) => {
       orders: orders
     });
   });
+});
 
+app.get('/order/dailyProgress', async (req, res) => {
+
+  await WorkOrder.find({
+    dateEntered: {
+      $gte: new Date().setHours(0, 0, 0, 0),
+      $lt: new Date().setHours(24,0,0,0)
+    }
+  }).then(orders => {
+    res.render('./order/dailyProgress', {
+      orders: orders
+    });
+  });
 });
 
 app.post('/order/completeWorkOrder', async (req, res) => {
@@ -115,11 +131,8 @@ app.post('/order/deleteWorkOrder', async (req, res) => {
     res.status(204).redirect('../order/viewWorkOrders');  //setting status to 204 (no content)
   });
 });
-app.get('/order/dailyProgress', async (req, res) => {
-  res.render('./order/dailyProgress');
 
-  return res.status(200);
-});
+
 
 app.post('/order/doWorkOrder', async (req, res) => {
 
