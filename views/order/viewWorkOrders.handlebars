@@ -35,12 +35,12 @@
       <td>
         <nav>
           <button class="navbar-toggler btn-dark" type="button" data-toggle="collapse"
-            data-target="#transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}"
-            aria-controls="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
+            data-target="#transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}"
+            aria-controls="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
             Details</button>
         </nav>
       </td>
-      <thead id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+      <thead id="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
         <tr>
           <th scope="col">Estimate</th>
           <th scope="col">Phone Number</th>
@@ -49,7 +49,7 @@
         </tr>
       </thead>
     </tr>
-    <tr id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+    <tr id="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
       <td label="Estimate"><input type="text" value="{{vehEstimate}}" class="form-control" name="Time" readonly='true'>
       </td>
       <td label="Phone Number"><input type="text" value="{{phoneNumber}}" class="form-control" name="phone"
