@@ -88,17 +88,15 @@ app.get('/order/viewWorkOrders', async (req, res) => {
 });
 
 app.get('/order/dailyProgress', async (req, res) => {
-
-  await WorkOrder.find({
-    dateEntered: {
-      $gte: new Date().setHours(0, 0, 0, 0),
-      $lt: new Date().setHours(24,0,0,0)
-    }
-  }).then(orders => {
-    res.render('./order/dailyProgress', {
-      orders: orders
+    
+  await WorkOrder.find({}).lean().then(orders => {
+      res.render('./order/dailyProgress', {
+        orders: orders.filter(function(myObj){
+          return myObj.dateEntered >= new Date().setHours(0,0,0,0)
+        })
+      });
+    
     });
-  });
 });
 
 app.post('/order/completeWorkOrder', async (req, res) => {
