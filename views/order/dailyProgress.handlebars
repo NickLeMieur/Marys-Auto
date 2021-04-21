@@ -88,10 +88,12 @@
       </td>
   </tbody>
   {{else}}
+  
   {{/each}}
   </table>
+  <br>
+<h3>Total Revenue</h3>
 
-  {{!-- {{#if reciept}}
   <table class="table table-dark">
 
   <thead>
@@ -103,15 +105,12 @@
 
   <tbody>
     <tr>
-      <td label="Tnum"><input type="text" value="{{object.length}}" class="form-control" name="fname" readonly="true">
+      <td label="Tnum"><input type="text" value="{{reciept.length}}" class="form-control" name="fname" readonly="true">
       </td>
-      <td label="Tcost"><input type="text" value="{{sum "cost"}}" class="form-control" name="lname" readonly="true">
+      <td label="Tcost"><input type="text" value="{{#each reciept}}{{sum this.cost}}{{/each}}" class="form-control" name="lname" readonly="true">
       </td>
   </tbody>
-
-  {{else}}
-  {{/if}}
-</table> --}}
+</table>
 <style>
   .disp {
     display: block;
