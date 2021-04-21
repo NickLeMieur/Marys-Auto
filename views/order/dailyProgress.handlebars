@@ -27,12 +27,12 @@
       <td>
         <nav>
           <button class="navbar-toggler btn-dark" type="button" data-toggle="collapse"
-            data-target="#transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}"
-            aria-controls="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
+            data-target="#transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}"
+            aria-controls="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
             Details</button>
         </nav>
       </td>
-      <thead id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+      <thead id="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
         <tr>
           <th scope="col">Estimate</th>
           <th scope="col">Phone Number</th>
@@ -41,7 +41,7 @@
         </tr>
       </thead>
     </tr>
-    <tr id="transDetails{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
+    <tr id="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" class="collapse">
       <td label="Estimate"><input type="text" value="{{vehEstimate}}" class="form-control" name="Time" readonly='true'>
       </td>
       <td label="Phone Number"><input type="text" value="{{phoneNumber}}" class="form-control" name="phone"
@@ -60,11 +60,58 @@
     </tr>
     <div></div>
   </tbody>
+  
   {{else}}
   <h1>No Work Orders in Database</h1>
   <h3><a href='/'>Return to all transacts</a></h3>
   {{/each}}
 </table>
+<br>
+<h3>Today's Completed Work Orders</h3>
+<table class="table table-dark">
+<thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Name</th>
+      <th scope="col">Total Cost</th>
+    </tr>
+  </thead>
+{{#each reciept}}
+  <tbody>
+    <tr>
+      <td label="Date"><input id="dateInput" type="text" value="{{dateFormat dateEntered " MM/DD/YYYY"}}"
+          class="form-control" name="transactDate" readonly="true">
+      </td>
+      <td label="Name"><input type="text" value="{{name}}" class="form-control" name="fname" readonly="true">
+      </td>
+      <td label="Cost"><input type="text" value="{{cost}}" class="form-control" name="cost" readonly="true">
+      </td>
+  </tbody>
+  {{else}}
+  {{/each}}
+  </table>
+
+  {{!-- {{#if reciept}}
+  <table class="table table-dark">
+
+  <thead>
+    <tr>
+      <th scope="col">Total Number Of Orders</th>
+      <th scope="col">Total Cost Of Orders</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td label="Tnum"><input type="text" value="{{object.length}}" class="form-control" name="fname" readonly="true">
+      </td>
+      <td label="Tcost"><input type="text" value="{{sum "cost"}}" class="form-control" name="lname" readonly="true">
+      </td>
+  </tbody>
+
+  {{else}}
+  {{/if}}
+</table> --}}
 <style>
   .disp {
     display: block;
