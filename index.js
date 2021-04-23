@@ -207,7 +207,7 @@ app.get('/order/dailyProgress', async (req, res) => {
         parts: print.parts,
         problems: print.problems,
         phoneNumber: print.phoneNumber,
-        hours: print.hours
+        hours: print.hours        
       });
     }).catch(err => {
       console.log(err);
