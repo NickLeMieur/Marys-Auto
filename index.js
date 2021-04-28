@@ -200,6 +200,7 @@ app.post('/order/searchWorkOrder', async (req, res) => {
 
 app.post('/order/completeReciept', async (req, res) => {
 
+  console.log(req.body);
 
   var reciept = {
     name: req.body.name,
@@ -210,11 +211,13 @@ app.post('/order/completeReciept', async (req, res) => {
     hours: req.body.hours,
     parts: req.body.parts,
     problems: req.body.problems,
-    phoneNumber: req.body.phoneNumber
+    phoneNumber: req.body.phoneNumber,
+    expenses: req.body.expenses
   };
   console.log(reciept);
 
-  await Reciept(reciept).save().then(print => {
+  //problem is here somewhere
+  var rec = await Reciept(reciept).save().then(print => {
     res.render('./order/completeReciept', {
       make: print.make,
       model: print.model,
@@ -230,7 +233,7 @@ app.post('/order/completeReciept', async (req, res) => {
     console.log(err);
     return res.status(500).json("Failed to Create Reciept");
   });
-
+  console.log(rec);
 
   res.render('./order/completeReciept');
   return res.status(200);

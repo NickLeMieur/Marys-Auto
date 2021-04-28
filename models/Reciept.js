@@ -30,7 +30,7 @@ const Reciept = new Schema(
       type: String,
       required: true
     },
-    parts: 
+    parts:
     {
       type: String,
       required: true

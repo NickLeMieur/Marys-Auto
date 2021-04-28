@@ -100,7 +100,7 @@
   <thead>
     <tr>
       <th scope="col">Total Number Of Orders</th>
-      <th scope="col">Total Cost Of Orders</th>
+      <th scope="col">Total Revenue</th>
     </tr>
   </thead>
 
@@ -116,30 +116,33 @@
 <script>
   //declaring cost array
   var costList = new Array();
-
+  var expenseList = new Array();
 </script>
 
 {{#each reciept}}
 <script>
   //filling cost array
   costList.push({{ cost }});
+  expenseList.push({{ expenses }});
 </script>
 {{/each}}
 
 <script>
   function getRevenue() {
     var returnSum = 0;
+    var totalExpenses = 0;
+    var revenue = 0;
     //looping through array to get sum of cost
     costList.forEach(cost => returnSum += cost);
-
+    expenseList.forEach(exp => totalExpenses += exp);
     console.log("sum of costs = " + returnSum);
-
+    revenue = totalExpenses - returnSum;
     var input = document.createElement("input");
 
     var strSum = "$" + returnSum.toString();
 
     //append child
-    input.appendChild(document.createTextNode(returnSum));
+    input.appendChild(document.createTextNode(revenue));
     input.value = returnSum;
     input.className = "form-control";
     input.readOnly = "true";
