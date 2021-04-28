@@ -41,6 +41,16 @@ const Reciept = new Schema(
       type: String,
       required: true
     },
+    year:
+    {
+      type: String,
+      required: true
+    },
+    expenses:
+    {
+      type: Number,
+      required: true
+    },
     cost:
     {
       type: Number,

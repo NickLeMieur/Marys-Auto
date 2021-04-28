@@ -106,9 +106,10 @@
 
   <tbody>
     <tr>
-      <td label="Tnum"><input type="text" value="{{reciept.length}}" class="form-control" name="fname" readonly="true">
+      <td label="Number of Completed Orders"><input type="text" value="{{reciept.length}}" class="form-control"
+          name="fname" readonly="true">
       </td>
-      <td label="Tcost" id="tCost" name="tCost">
+      <td label="Total Revenue" id="tCost" name="tCost">
       </td>
   </tbody>
 </table>
@@ -136,14 +137,15 @@
     costList.forEach(cost => returnSum += cost);
     expenseList.forEach(exp => totalExpenses += exp);
     console.log("sum of costs = " + returnSum);
-    revenue = totalExpenses - returnSum;
+    console.log("sum of costs: " + totalExpenses);
+    revenue = returnSum - totalExpenses;
     var input = document.createElement("input");
 
     var strSum = "$" + returnSum.toString();
 
     //append child
     input.appendChild(document.createTextNode(revenue));
-    input.value = returnSum;
+    input.value = revenue;
     input.className = "form-control";
     input.readOnly = "true";
     document.getElementById("tCost").appendChild(input);

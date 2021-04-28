@@ -200,7 +200,6 @@ app.post('/order/searchWorkOrder', async (req, res) => {
 
 app.post('/order/completeReciept', async (req, res) => {
 
-  console.log(req.body);
 
   var reciept = {
     name: req.body.name,
@@ -216,7 +215,6 @@ app.post('/order/completeReciept', async (req, res) => {
   };
   console.log(reciept);
 
-  //problem is here somewhere
   var rec = await Reciept(reciept).save().then(print => {
     res.render('./order/completeReciept', {
       make: print.make,
@@ -229,13 +227,10 @@ app.post('/order/completeReciept', async (req, res) => {
       phoneNumber: print.phoneNumber,
       hours: print.hours
     });
-  }).catch(err => {
-    console.log(err);
-    return res.status(500).json("Failed to Create Reciept");
   });
-  console.log(rec);
 
-  res.render('./order/completeReciept');
+  console.log(rec);
+  //res.render('./order/completeReciept');
   return res.status(200);
 
 
