@@ -3,7 +3,13 @@
 </div>
 <div>
   <form class="form-inline" method="post" action="searchWorkOrder">
-    <input type="text" id="fname" placeholder="Search by First Name" class="form-control" name="fname">
+    <select class="form-select" name="query" aria-label="Default select example">
+      <option selected="true" value="fname">First Name</option>
+      <option value="lname">Last Name</option>
+      <option value="make">Make</option>
+      <option value="model">Model</option>
+    </select>
+    <input type="text" id="sch_param" placeholder="Select what to search on" class="form-control" name="sch_param">
     <input type='submit' id="btn" name="btn" value="Search" class='btn btn-secondary' />
   </form>
   <br />
@@ -36,7 +42,8 @@
         <nav>
           <button class="navbar-toggler btn-dark" type="button" data-toggle="collapse"
             data-target="#transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}"
-            aria-controls="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}" aria-expanded="false">View
+            aria-controls="transDetails{{_id}}{{phoneNumber}}{{transactDate}}{{transactPrice}}"
+            aria-expanded="false">View
             Details</button>
         </nav>
       </td>
